@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touch Typing Skill Training Ver 0.8</title>
+  <link rel="stylesheet" type="text/css" href="typing.css">
+</head>
+<body>
+  <main>
+    <article>
+      <audio src="buu.mp3" id="sndbuu"></audio>
+    </article>
+    <input type="hidden" id="page">
+    <input type="hidden" id="scene" value="">
+    <article id="toppage">あ</article>
+    <article id="mainpage">
+      <div id="line"><output id="input"></output></div><br>
+      <div id="keyboards"></div>
+    </article>
+    <article id="scorepage">う</article>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="variable.js"></script>
+  <script src="keyboard.js"></script>
+  <script src="typing.js"></script>
+</body>
+</html>

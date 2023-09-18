@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* *{box-sizing: border-box;} */
+body{background-color: white;}
+article{
+    display: none;
+    width: 500px;
+    margin: 8px auto;
+    padding: 8px;
+    background-color: lightgray;
+}
+#board{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.keyboards{
+    display: inline-block;
+    height: 80%;
+    width: 500px;
+    margin: 8px;
+    /* padding: 2% 1% 0% 1%; */
+    border: 0.1rem solid black;
+    border-radius: 0.25rem;
+    background-color: white;
+}
+.keyboard{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px 0;
+    margin:8px;
+}
+.key{
+    display: table-cell;
+    height: 28px;
+    border: 1px solid dimgray;
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #E8E8E8;
+    margin-right: 4px;
+}
+.nkey{  width: 28px; }
+.shkey{ width: 28px; }
+#space{ width: 300px; }
+#k19{ display: table-cell; width: 14px;}
+#k29{ display: table-cell; width: 28px;}
+#k39{ display: table-cell; width: 42px;}
+#k49{ display: table-cell; width: 40px;}
+#k59{ display: table-cell; width: 40px;}
+#shiftl{display: table-cell; width: 50px;}
+#shiftr{display: table-cell; width: 50px;}
+
+.lbutton{
+    border: 1px solid dimgray;
+    border-radius: 3px;
+    background-color: #E8E8E8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wh20px{width: 20px;height:20px;}
+.w100px{width: 100px;height:20px;}
+.tc{display: table-cell;}
+.ib{display: inline-block;}
+.di{display: inline;}
+.df{display: flex;}
+.marginl16px{ margin-left: 16px; }
+.margind8px{ margin-bottom: 8px;}
+.opacity05 { opacity: 0.5; }
+#line {
+    background-color: cornsilk;
+    border: 1px solid dimgray;
+    border-radius: 4px;
+    text-align: center;
+    height: 24px;
+    margin-top: 4px;
+}
+#input{
+    vertical-align: middle;
+}
+.char{
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 20px;
+    color: lightgray;
+}
+.nextchar{
+    background-color: #e1e1b0;
+    border: 1px solid yellow;
+    color: black;
+}
+#spk{
+    border: 1px solid dimgray;
+    border-radius: 4px;
+    width: 20px;
+}
+.fadeout1{ animation:1.0s linear forwards fadeout1; }
+.fadeout2{ animation:1.0s linear forwards fadeout2; }
+@keyframes fadeout1{
+    0%{ opacity:1; transform:scaleX(0.5); }
+  100%{ opacity:0; transform:scaleX(50) ; }
+}
+@keyframes fadeout2{
+    0%{ opacity:1; transform:scaleX(0.5); }
+  100%{ opacity:0; transform:scaleX(18) ; }
+}
+
+
