@@ -1,11 +1,9 @@
 $(function(){
-  const keyboard = new Keyboard();
+  const keyboard = new KeyBoard();
+  const keydata = new KeyData();
   let page='';
   let scene=null;
   let nexts='';
-  let klang='';
-  let level=0;
-  let step=0;
 
   let gamedata=[];
   let idx1,idx2;
@@ -85,11 +83,11 @@ $(function(){
         break;
       case 'scene3m':
         div=$('<div>',{class:'marginl16px margind8px df'});
-        div.append( 'レベル'+level+'のステップ'+(step+1)+'の開始は' );
+        div.append( 'レベル'+keydata.level+'のステップ'+(keydata.step+1)+'の開始は' );
         div.append( $('<span>',{class:'lbutton w100px',text:'スペース'}) );
         div.append( 'キー を押下。' );
         m.html( div );
-        makeGameData();
+        gamedata=keydata.make(mode,keyboard.klang);
         if(pval!='mainpage')
           $('#page').val('mainpage').change();
         break;
@@ -126,7 +124,7 @@ $(function(){
         break;
 
       case 'score01':
-        s.html( $('<div>',{text:'レベル'+level+'のステップ'+(step+1)+'が完了。'}) );
+        s.html( $('<div>',{text:'レベル'+keydata.level+'のステップ'+(keydata.step+1)+'が完了。'}) );
         s.append( $('<br>') );
 
         div=$('<div>',{text:'次へ進む場合は',class:'marginl16px margind8px df'});
@@ -138,8 +136,8 @@ $(function(){
         break;
 
       case 'score02':
-        if(step<steps.length)
-        s.html( $('<div>',{text:'レベル'+level+'の練習が終わりました。'}) );
+        if(keydata.step<KeyData.step.length)
+        s.html( $('<div>',{text:'レベル'+keydata.level+'の練習が終わりました。'}) );
         s.append( $('<br>') );
         div=$('<div>',{text:'次へ進む場合は'});
         div.append( $('<div>').append( $('<span>',{class:'lbutton w40px',text:'スペース'}) ) );
@@ -160,6 +158,7 @@ $(function(){
       switch(scene){
         case 'scene1':
           nexts='scene2';
+          let klang='';
           switch(key){
             case 74:
               klang='japanese';
@@ -171,18 +170,21 @@ $(function(){
               $("#sndbuu").get(0).play();
               nexts='';
           }
+          if(klang!=''){
+            keyboard.create(klang);
+          }      
           break;
         case 'scene2':
           nexts='scene3m';
           switch(key){
-            case 49:level=1;break;
-            case 50:level=2;break;
-            case 51:level=3;break;
+            case 49:keydata.level=1;break;
+            case 50:keydata.level=2;break;
+            case 51:keydata.level=3;break;
             default:
               $("#sndbuu").get(0).play();
               nexts='';
           }
-          if(level==1){
+          if(keydata.level==1){
           }else{
             nexts='';$("#sndbuu").get(0).play();
           }
@@ -197,8 +199,8 @@ $(function(){
           break;
         case 'score01':
           if(key==32){
-            step++;
-            if(step<steps.length){
+            keydata.step++;
+            if(keydata.step<KeyData.steps.length){
               nexts='scene3m';
             }else
               nexts='score02';
@@ -212,9 +214,9 @@ $(function(){
   $('body').on('keydown',function(e){
     const key=e.keyCode;
     if('game'==scene){
-      const l=steps[step].substr(1,1);
-      const n=steps[step].slice(-1);
-      const code=keycode[key];
+      const l=KeyData.steps[keydata.step].substr(1,1);
+      const n=KeyData.steps[keydata.step].slice(-1);
+      const code=KeyData.keycode[key];
       const char=code.toLowerCase();
       if(char==gamedata[idx1][idx2]){
         $('#inp'+idx2).removeClass('nextchar');
@@ -264,9 +266,6 @@ $(function(){
       if(page!='')
         $('#'+page).css('display','none');
     }
-    if(klang!=''){
-      keyboard.create(klang);
-    }
     page=newpage;
   }
   function score(newpage){
@@ -276,35 +275,6 @@ $(function(){
         $('#'+page).css('display','none');
     }
     page=newpage;
-  }
-
-  function makeGameData(){
-    gamedata=[];
-    if(level==1){
-      const l=steps[step].substr(1,1);
-      const n=steps[step].slice(-1);
-      let tanestr='';
-      if(n==0||n==1){tanestr=tanes[klang][l][n];}
-      else{tanestr=tanes[klang][l][0]+tanes[klang][l][1];}
-      let strary='';
-      const max1=(mode=='DBG')?1:3;
-        for(let i=0;i<max1;i++){
-        let tmpstr=tanestr;
-        let strary='';
-        const max2=(mode=='DBG')?1:tanestr.length;
-          for(let j=0;j<max2;j++){
-            let r,c;
-          do{
-            r=Math.floor(Math.random() * max2);
-            c=tmpstr[r];
-          }while(c==' ');
-          tmpstr=tmpstr.substr(0,r)+' '+tmpstr.substr(r+1);
-          strary+=c;
-        }
-        gamedata[i]=strary;
-      }
-      console.log(strary);
-    }
   }
 
   function print1line(){
