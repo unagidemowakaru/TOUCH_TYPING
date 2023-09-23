@@ -1,0 +1,107 @@
+@charset "utf-8";
+*{box-sizing: border-box;}
+#hands{
+    width: 300px;
+    height: 80px;
+    margin: 0 auto;
+}
+.hand{
+    width: 95px;
+    height: 80px;
+    display: flex;
+}
+.left{float: left;}
+.right{float: right;}
+
+.fingers{
+    display: flex;
+    width: 72px;
+    height:50px;
+}
+.between{
+    width: 4px;
+    border-bottom: 1px solid red;
+}
+.between1{
+    width: 4px;
+    height: 50px;
+}
+.between2{
+    width: 4px;
+    height: 10px;
+}
+.between3{
+    width: 4px;
+    height: 20px;
+    border-bottom: 1px solid red;
+    border-top: 1px solid red;
+    background-color: lightyellow;
+}
+.fingerthumb{
+    width:  15px;
+    height: 80px;
+}
+.finger{
+    width: 15px;
+    height: 50px;
+}
+.fingap0{ height: 25px; }
+.fingap1{ height:  5px; }
+.fingap3{ height: 10px; }
+.fingap4{ height: 35px; }
+.fingapb{ height: 40px; }
+.fingertip{
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    background-color: lightyellow;
+    height: 10px;
+}
+.finger0{height: 15px;}
+.finger1{height: 35px;}
+.finger2{height: 40px;}
+.finger3{height: 30px;}
+.finger4{height: 15px;}
+.fingermid{
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    background-color: lightyellow;
+}
+#palmleft1{
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    background-color: lightyellow;
+    height: 10px;
+}
+#palmleft2{
+    border-left: 1px solid red;
+    border-bottom: 1px solid red;
+    background-color: lightyellow;
+    height: 20px;
+}
+#palmright1{
+    border-right: 1px solid red;
+    border-left: 1px solid red;
+    background-color: lightyellow;
+    height: 10px;
+}
+#palmright2{
+    border-right: 1px solid red;
+    border-bottom: 1px solid red;
+    background-color: lightyellow;
+    height: 20px;
+}
+
+#palmleft{
+    border-left: 1px solid red;
+    border-bottom: 1px solid red;
+    background-color: lightyellow;
+    height: 20px;
+}
+#palmright{
+    border-right: 1px solid red;
+    border-bottom: 1px solid red;
+    background-color: lightyellow;
+    height: 20px;
+}
+

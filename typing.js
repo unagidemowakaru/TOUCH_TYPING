@@ -189,6 +189,13 @@ $(function(){
             nexts='';$("#sndbuu").get(0).play();
           }
           break;
+        case 'game':
+            const chr=keydata.charOf(key);
+            const idx=keyboard.keydown(chr);
+              if(idx!=null){
+                $('#'+idx).removeClass('keydownt').removeClass('keydownf');
+              }
+              break;
         case 'scene3':
           nexts=(mode=='DBG')?'scene3_0':'scene3m';
           if(key!=32)nexts='';
@@ -216,9 +223,14 @@ $(function(){
     if('game'==scene){
       const l=KeyData.steps[keydata.step].substr(1,1);
       const n=KeyData.steps[keydata.step].slice(-1);
-      const code=KeyData.keycode[key];
+      const code=KeyData.keycodes[key];
       const char=code.toLowerCase();
+
+      const chr=keydata.charOf(key);
+      const idx=keyboard.keydown(chr);
+      
       if(char==gamedata[idx1][idx2]){
+        if(idx!=null) $('#'+idx).addClass('keydownt');
         $('#inp'+idx2).removeClass('nextchar');
         idx2++;
         if(idx2<gamedata[idx1].length){
@@ -233,16 +245,10 @@ $(function(){
             $('#scene').val('score01').change();
           }
         }
+      }else{
+        if(idx!=null) $('#'+idx).addClass('keydownf');
       }
     }else if('score01'==scene){
-      // if(key==32){
-      //   step++;
-      //   if(step<steps.length){
-      //     nexts='scene3m';
-      //   }else
-      //     nexts='score02';
-      //   $('#scene').val(nexts).change();
-      // }
 
     }else if('score02'==scene){
       if(key==32){

@@ -7,48 +7,12 @@ article{
     padding: 8px;
     background-color: lightgray;
 }
+
 #board{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
-
-.keyboards{
-    display: inline-block;
-    height: 80%;
-    width: 500px;
-    margin: 8px;
-    /* padding: 2% 1% 0% 1%; */
-    border: 0.1rem solid black;
-    border-radius: 0.25rem;
-    background-color: white;
-}
-.keyboard{
-    display: table;
-    border-collapse: separate;
-    border-spacing: 5px 0;
-    margin:8px;
-}
-.key{
-    display: table-cell;
-    height: 28px;
-    border: 1px solid dimgray;
-    border-radius: 4px;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #E8E8E8;
-    margin-right: 4px;
-}
-.nkey{  width: 28px; }
-.shkey{ width: 28px; }
-#space{ width: 300px; }
-#k19{ display: table-cell; width: 14px;}
-#k29{ display: table-cell; width: 28px;}
-#k39{ display: table-cell; width: 42px;}
-#k49{ display: table-cell; width: 40px;}
-#k59{ display: table-cell; width: 40px;}
-#shiftl{display: table-cell; width: 50px;}
-#shiftr{display: table-cell; width: 50px;}
 
 .lbutton{
     border: 1px solid dimgray;

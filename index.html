@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Touch Typing Skill Training Ver 0.8</title>
   <link rel="stylesheet" type="text/css" href="typing.css">
+  <link rel="stylesheet" type="text/css" href="keyboard.css">
+  <link rel="stylesheet" type="text/css" href="finger.css">
 </head>
 <body>
   <main>
@@ -18,12 +20,91 @@
     <article id="mainpage">
       <div id="line"><output id="input"></output></div><br>
       <div id="keyboards"></div>
+      <div id="hands">
+        <div class="hand left">
+          <div class="fingerpalm">
+            <div class="fingers">
+              <div class="finger">
+                <div class="fingap0"></div>
+                <div id="finger0" class="fingertip"></div>
+                <div class="finger0 fingermid"></div></div>
+              <div class="between"></div>
+              <div class="finger">
+                <div class="fingap1"></div>
+                <div id="finger1" class="fingertip"></div>
+                <div class="finger1 fingermid"></div></div>
+                <div class="between"></div>
+              <div class="finger">
+                <div id="finger2" class="fingertip"></div>
+                <div class="finger2 fingermid"></div></div>
+              <div class="between"></div>
+                <div class="finger">
+                <div class="fingap3"></div>
+                <div id="finger3" class="fingertip"></div>
+                <div class="finger3 fingermid"></div></div>
+            </div>
+            <div id="palmleft1"></div>
+            <div id="palmleft2"></div>
+          </div>
+          <div>
+            <div class="between1"></div>
+            <div class="between2"></div>
+            <div class="between3"></div>
+          </div>
+          <div class="fingerthumb">
+            <div class="fingap4"></div>
+            <div id="finger4" class="fingertip"></div>
+            <div class="finger4 fingermid"></div>
+            <div id="palmright"></div>
+          </div>
+        </div>
+
+        <div class="hand right">
+          <div class="fingerthumb">
+            <div class="fingap4"></div>
+            <div id="finger4" class="fingertip"></div>
+            <div class="finger4 fingermid"></div>
+            <div id="palmleft"></div>
+          </div>
+          <div>
+            <div class="between1"></div>
+            <div class="between2"></div>
+            <div class="between3"></div>
+          </div>
+          <div class="fingerpalm">
+            <div class="fingers">
+              <div class="finger">
+                <div class="fingap3"></div>
+                <div id="finger3" class="fingertip"></div>
+                <div class="finger3 fingermid"></div></div>
+              <div class="between"></div>
+              <div class="finger">
+                <div class="fingap2"></div>
+                <div id="finger2" class="fingertip"></div>
+                <div class="finger2 fingermid"></div></div>
+              <div class="between"></div>
+              <div class="finger">
+                <div class="fingap1"></div>
+                <div id="finger1" class="fingertip"></div>
+                <div class="finger1 fingermid"></div></div>
+              <div class="between"></div>
+              <div class="finger">
+                <div class="fingap0"></div>
+                <div id="finger0" class="fingertip"></div>
+                <div class="finger0 fingermid"></div></div>
+            </div>
+            <div id="palmright1"></div>
+            <div id="palmright2"></div>
+          </div>
+        </div>
+      </div>
     </article>
     <article id="scorepage">う</article>
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="keyboard.js"></script>
   <script src="keydata.js"></script>
+  <script src="finger.js"></script>
   <script src="typing.js"></script>
 </body>
 </html>

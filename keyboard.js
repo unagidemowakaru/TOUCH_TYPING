@@ -44,6 +44,17 @@ class KeyBoard {
 			}
 			d1.append(d2);
 		}
-		// article.html(d1);
+	}
+	keydown(char){
+		let idx=null;
+		forloop:for(const keyl of KeyBoard.keys[this.klang]){
+			for(const i in keyl){
+				if(keyl[i]==char){
+					idx=i;
+					break forloop;
+				}
+			}
+		}
+		return idx;
 	}
 }
