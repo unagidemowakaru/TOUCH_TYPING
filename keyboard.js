@@ -23,8 +23,6 @@ class KeyBoard {
 	}
 	create(type) {
 		this.klang = type;
-		// const article = $('#mainpage');
-		// const d1 = $('<div>',{class:'keyboards'});
 		const d1=$('#keyboards');
 		d1.html('');
 		const ks = KeyBoard.keys[this.klang];
@@ -34,18 +32,18 @@ class KeyBoard {
 				if(keyi.length==3) // space
 					d2.append( $('<div>',{id:keyi}) );
 				else if(keyi.length==4) // Normail Key
-					d2.append( $('<div>',{text:keyl[keyi],id:keyi,class:"key nkey"}) );
+					d2.append( $('<div>',{text:keyl[keyi],id:keyi,class:"key nkey keycol"}) );
 				else if(keyi.length==6) // Normail Key
-					d2.append( $('<div>',{text:keyl[keyi],id:keyi,class:"key shkey"}) );
+					d2.append( $('<div>',{text:keyl[keyi],id:keyi,class:"key shkey keycol"}) );
 				else if(keyi=='space') // Space Key
-					d2.append( $('<div>',{text:keyl[keyi],id:keyi,class:"key"}) );
+					d2.append( $('<div>',{text:keyl[keyi],id:keyi,class:"key keycol"}) );
 				else
 					d2.append( $('<div>',{text:keyl[keyi],id:keyi}) );
 			}
 			d1.append(d2);
 		}
 	}
-	keydown(char){
+	searchindex(char){
 		let idx=null;
 		forloop:for(const keyl of KeyBoard.keys[this.klang]){
 			for(const i in keyl){

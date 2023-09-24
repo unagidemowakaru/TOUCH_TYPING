@@ -22,8 +22,10 @@
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
-    background-color: #E8E8E8;
     margin-right: 4px;
+}
+.keycol{
+    background-color: #E8E8E8;
 }
 .nkey{  width: 28px; }
 .shkey{ width: 28px; }
