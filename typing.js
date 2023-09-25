@@ -49,7 +49,9 @@ $(function(){
         break;
       case 'scene2':
         t.html( $('<div>',{text:'　タイピング練習アプリでは次に'}) );
+        t.append( $('<br>') );
         t.append( $('<div>',{text:'キーボードの種類を選びましょう(キー入力)。'}) );
+        t.append( $('<br>') );
         div=$('<div>',{class:'marginl16px margind8px df'});
         div.append( $('<span>',{class:"lbutton wh20px",text:'j'}) );
         div.append( '・・・・・日本語キーボード' );
@@ -83,7 +85,7 @@ $(function(){
       case 'scene4':
         t.html( $('<div>',{text:'　タイピング練習アプリを始める前の最後の質問です'}) );
         t.append( $('<br>') );
-        t.html( $('<div>',{text:'あなたを助けてくれる補助機能を使いますか？(次に打つべきキーを色でお教えします)'}) );
+        t.append( $('<div>',{text:'あなたを助けてくれる補助機能を使いますか？(次に打つべきキーを色でお教えします)'}) );
         t.append( $('<br>') );
         div=$('<div>',{class:'marginl16px margind8px df'});
         div.append( $('<div>',{class:"lbutton wh20px",text:'Y'}) );
@@ -96,10 +98,6 @@ $(function(){
         div.append( $('<div>',{class:"lbutton wh20px",text:'N'}) );
         div.append( $('<div>',{text:'・・・・・補助機能は使わない'}) );
         t.append( div );
-        break;
-      case 'scene4':
-        t.html( $('<div>',{text:'　タイピング練習アプリで、音を出力しますか？'}) );
-        t.append( $('<br>') );
         break;
       case 'scene5':
         div=$('<div>',{class:'marginl16px margind8px df'});
@@ -231,7 +229,7 @@ $(function(){
   
         case 'game':
           const code=KeyData.keycodes[key];
-          const char=code.toLowerCase();
+          const char=code==undefined?null:code.toLowerCase();
           if(char==gamedata[idx1][idx2]){
             $('#inp'+idx2).removeClass('nextchar');
             if(keydata.help){
@@ -295,7 +293,7 @@ $(function(){
       const l=KeyData.steps[keydata.step].substr(1,1);
       const n=KeyData.steps[keydata.step].slice(-1);
       const code=KeyData.keycodes[key];
-      const char=code.toLowerCase();
+      const char=code==undefined?null:code.toLowerCase();
 
       const chr=keydata.charOf(key);
       const idx=keyboard.searchindex(chr);
