@@ -1,6 +1,7 @@
 $(function(){
   const keyboard = new KeyBoard();
   const keydata = new KeyData();
+  const finger = new Fingers();
   let page='';
   let scene=null;
   let nexts='';
@@ -232,22 +233,23 @@ $(function(){
           const char=code==undefined?null:code.toLowerCase();
           if(char==gamedata[idx1][idx2]){
             $('#inp'+idx2).removeClass('nextchar');
-            if(keydata.help){
-              const idx=keyboard.searchindex(gamedata[idx1][idx2].toUpperCase());
-              if(idx!=null){
-                $('#'+idx).removeClass('keydownt');
-                $('#'+idx).addClass('keycol');
-              }
+            const idx=keyboard.searchindex(gamedata[idx1][idx2].toUpperCase());
+            if(idx!=null){
+              $('#'+idx).removeClass('keydownt');
+              $('#'+idx).addClass('keycol');
             }
             idx2++;
             if(idx2<gamedata[idx1].length){
               $('#inp'+idx2).addClass('nextchar');
               if(keydata.help){
-                const idx=keyboard.searchindex(gamedata[idx1][idx2].toUpperCase());
+                const chr=gamedata[idx1][idx2];
+                const idx=keyboard.searchindex(chr.toUpperCase());
                 if(idx!=null){
                   $('#'+idx).removeClass('keycol');
                   $('#'+idx).addClass('nextkey');
                 }
+                finger.find(keyboard.klang,chr);
+                finger.flashon();
               }
             }else{
               idx2=0;
@@ -259,6 +261,7 @@ $(function(){
                 $('#scene').val('score01').change();
               }
             }
+    
           }else{
             const chr=keydata.charOf(key);
             const idx=keyboard.searchindex(chr);
@@ -302,6 +305,9 @@ $(function(){
         if(idx!=null){
           $('#'+idx).removeClass('nextkey');
           $('#'+idx).addClass('keydownt');
+        }
+        if(keydata.help){
+          finger.flashoff();
         }
       }else{
         if(idx!=null) $('#'+idx).addClass('keydownf');
@@ -355,6 +361,8 @@ $(function(){
         $('#'+idx).removeClass('keycol');
         $('#'+idx).addClass('nextkey');
       }
+      finger.find(keyboard.klang,str[0]);
+      finger.flashon();
     }
   }
 });
