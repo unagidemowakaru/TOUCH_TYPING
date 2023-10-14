@@ -161,7 +161,7 @@ $(function(){
         break;
 
       case 'score01':
-        s.html( $('<div>',{text:'レベル'+keydata.level+'のステップ'+(keydata.step+1)+'が完了。'}) );
+        s.html( $('<div>',{text:'レベル'+keydata.level+'のステップ'+(keydata.step)+'が完了。'}) );
         s.append( $('<br>') );
 
         div=$('<div>',{text:'次へ進む場合は',class:'marginl16px margind8px df'});
