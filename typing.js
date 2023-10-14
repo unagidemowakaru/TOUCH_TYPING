@@ -29,7 +29,7 @@ $(function(){
     const t=$('#toppage');
     const m=$('#input');
     const s=$('#scorepage');
-    let div='',div2='';
+    let div='',div2='',messagestr='';
     switch(sval){
       case 'scene1':
         t.html( $('<div>',{text:'タイピング練習アプリです。'}) );
@@ -62,12 +62,13 @@ $(function(){
         div.append($('<div>',{text:'・・・・・英語キーボード'}) );
         t.append( div );
         t.append( $('<br>') );
-        $('#page').val('toppage').change();
         break;
       case 'scene3':
-        t.html( $('<div>',{text:'　タイピング練習アプリでは'}) );
-        t.append( $('<br>') );
-        t.append( $('<div>',{text:'更に、練習のレベルを選びましょう(キー入力)。'}) );
+        messagestr='　タイピング練習アプリでは、';
+      case 'scene3_2':
+        t.html( $('<div>',{text:messagestr}) );
+        if(messagestr!='')t.append( $('<br>次に、') );
+        t.append( $('<div>',{text:'練習のレベルを選びましょう(キー入力)。'}) );
         t.append( $('<br>') );
         div=$('<div>',{class:'marginl16px margind8px df'});
         div.append( $('<div>',{class:"lbutton wh20px",text:'1'}) );
@@ -82,11 +83,16 @@ $(function(){
         div.append( $('<div>',{text:'・・・・・上級(文章を入力)'}) );
         t.append( div );
         t.append( $('<br>') );
+        keydata.step=0;
+        if(pval!='toppage')
+          $('#page').val('toppage').change();
         break;
       case 'scene4':
-        t.html( $('<div>',{text:'　タイピング練習アプリを始める前の最後の質問です'}) );
-        t.append( $('<br>') );
-        t.append( $('<div>',{text:'あなたを助けてくれる補助機能を使いますか？(次に打つべきキーを色でお教えします)'}) );
+        messagestr='　タイピング練習アプリを始める前の最後の質問です';
+      case 'scene4_2':
+        t.html( $('<div>',{text:messagestr}) );
+        if(messagestr!='')t.append( $('<br>') );
+        t.append( $('<div>',{text:'ヘルプ機能を使うか選びましょう(キー入力)。'}) );
         t.append( $('<br>') );
         div=$('<div>',{class:'marginl16px margind8px df'});
         div.append( $('<div>',{class:"lbutton wh20px",text:'Y'}) );
@@ -112,7 +118,7 @@ $(function(){
         break;
       case 'scene5_3':
         m.html( $('<div>',{text:'３',class:'fadeout1'}) );
-        const time2=(mode=='DBG')?'1':'1500';
+        const time2=(mode=='DBG')?'1':'1000';
         setTimeout(() => {
           $('#scene').val('scene5_2').change();
         }, time2);
@@ -121,20 +127,32 @@ $(function(){
         m.html( $('<div>',{text:'２',class:'fadeout1'}) );
         setTimeout(() => {
           $('#scene').val('scene5_1').change();
-        }, "1500");
+        }, "1000");
         break;
       case 'scene5_1':
         m.html( $('<div>',{text:'１',class:'fadeout1'}) );
         setTimeout(() => {
           $('#scene').val('scene5_0').change();
-        }, "1500");
+        }, "1000");
         break;
       case 'scene5_0':
         m.html( $('<div>',{text:'開始',class:'fadeout2'}) );
-        const time3=(mode=='DBG')?'500':'1500';
+        const time3=(mode=='DBG')?'100':'750';
         setTimeout(() => {
           $('#scene').val('game').change();
         }, time3);
+        break;
+      case 'scene6':
+        div=$('<div>',{class:'marginl16px margind8px df'});
+        div.append( 'レベル'+keydata.level+'のステップ'+(keydata.step+1)+'の開始を開始します。' );
+        m.html( div );
+        const time4=(mode=='DBG')?'500':'1500';
+        setTimeout(() => {
+          $('#scene').val('scene5_0').change();
+        }, time4);
+        gamedata=keydata.make(mode,keyboard.klang);
+        if(pval!='mainpage')
+          $('#page').val('mainpage').change();
         break;
 
       case 'game':
@@ -152,17 +170,19 @@ $(function(){
         s.append(div);
         s.append( $('<br>') );
         $('#page').val('scorepage').change();
+        // if(keydata.step==(KeyData.steps.length-1))
+        //   $('#scene').val('score02').change();
         break;
 
       case 'score02':
-        if(keydata.step<KeyData.step.length)
         s.html( $('<div>',{text:'レベル'+keydata.level+'の練習が終わりました。'}) );
         s.append( $('<br>') );
-        div=$('<div>',{text:'次へ進む場合は'});
+        div=$('<div>',{text:'次へ進む場合は',class:'marginl16px margind8px df'});
         div.append( $('<div>').append( $('<span>',{class:'lbutton w40px',text:'スペース'}) ) );
         div.append('キーを押してください。');
         s.append(div);
         s.append( $('<br>') );
+        $('#page').val('scorepage').change();
         break;
     }
     scene=sval;
@@ -203,7 +223,9 @@ $(function(){
           }      
           break;
         case 'scene3':
+        case 'scene3_2':
           nexts='scene4';
+          if(scene!='scene3') nexts='scene4_2';
           switch(key){
             case 49:keydata.level=1;break;
             case 50:keydata.level=2;break;
@@ -218,6 +240,7 @@ $(function(){
           }
           break;
         case 'scene4':
+        case 'scene4_2':
           nexts='scene5';
           switch(key){
             case 32:case 89:keydata.help=true;break;
@@ -227,7 +250,11 @@ $(function(){
               nexts='';
           }
           break;
-  
+        case 'scene5':
+          nexts=(mode=='DBG')?'scene5_0':'scene5_3';
+          if(key!=32)nexts='';
+          break;
+
         case 'game':
           const code=KeyData.keycodes[key];
           const char=code==undefined?null:code.toLowerCase();
@@ -258,10 +285,12 @@ $(function(){
                 print1line();
               }else{
                 idx1=0;
-                $('#scene').val('score01').change();
+                keydata.step++;
+                nexts='score02';
+                if(keydata.step<KeyData.steps.length)
+                  nexts='score01';
               }
             }
-    
           }else{
             const chr=keydata.charOf(key);
             const idx=keyboard.searchindex(chr);
@@ -272,18 +301,21 @@ $(function(){
           }
           break;
   
-        case 'scene5':
-          nexts=(mode=='DBG')?'scene5_0':'scene5_3';
+        case 'scene6':
+          nexts='scene3';
           if(key!=32)nexts='';
           break;
         case 'score01':
           if(key==32){
-            keydata.step++;
-            if(keydata.step<KeyData.steps.length){
-              nexts='scene5';
-            }else
-              nexts='score02';
-          }else  nexts='';
+            // if(keydata.step<KeyData.steps.length){
+            //   nexts='scene6';
+            // }else
+            nexts='scene6';
+          }else nexts='';
+          break;
+        case 'score02':
+          if(key==32) nexts='scene3_2';
+          else nexts='';
           break;
       }
     }
@@ -313,11 +345,7 @@ $(function(){
         if(idx!=null) $('#'+idx).addClass('keydownf');
       }
     }else if('score01'==scene){
-
     }else if('score02'==scene){
-      if(key==32){
-        $('#scene').val('scene1').change();
-      }
     }
 
   });
